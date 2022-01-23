@@ -8,3 +8,8 @@ users or code native users.
 chose a drop down exercise then provide 5 set slots so you dont have to enter each set individually
 
 [Future] Create way to see my progress or historical data. Integrate powerBI type data, or create a dashboard.
+
+Add a cardio section. Consider adding an exercise relation table with minutes and calories burned. If they do not know 
+the calories burned consider making a simple calculator. Will be poor but its not the worst if you can ball park it. 
+
+track your friends, make communities.
