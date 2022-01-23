@@ -6,3 +6,5 @@ retain adding data to other profiles. If so, need to blacklist the funciton from
 users or code native users.
 
 chose a drop down exercise then provide 5 set slots so you dont have to enter each set individually
+
+[Future] Create way to see my progress or historical data. Integrate powerBI type data, or create a dashboard.
