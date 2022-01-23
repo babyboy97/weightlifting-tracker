@@ -19,6 +19,18 @@ class SQL:
         self.my_cursor = self.my_database.cursor()
 
     def query_data(self, query:str):
+        """Provides the ability to query data from the database
+
+        Args:
+            query (str): SQL query
+
+        Raises:
+            Exception: Must pass str for query
+            e: SQL syntax based error
+
+        Returns:
+            df (pd.DataFrame): Dataframe
+        """
         if not isinstance(query,str): 
             raise Exception("Must pass str for query")
         
