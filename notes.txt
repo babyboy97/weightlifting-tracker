@@ -1,0 +1,5 @@
+Add person level data tracking, unique identifier for different people 
+
+Make assumptions on rest day when nothign is logged? Requires you to be able to go back and update.
+
+chose a drop down exercise then provide 5 set slots so you dont have to enter each set individually
