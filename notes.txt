@@ -1,5 +1,8 @@
 Add person level data tracking, unique identifier for different people 
 
-Make assumptions on rest day when nothign is logged? Requires you to be able to go back and update.
+Make assumptions on rest day when nothign is logged? Requires you to be able to go back and update and to chose yourself 
+when adding data points. Potentially at beginning of session you chose your person from drop down? With a password to
+retain adding data to other profiles. If so, need to blacklist the funciton from the query_data function for front facing 
+users or code native users.
 
 chose a drop down exercise then provide 5 set slots so you dont have to enter each set individually
