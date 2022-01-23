@@ -2,7 +2,7 @@ from config import aws_endpoint, aws_master_username, aws_master_password, datab
 import mysql.connector
 import pandas as pd
 from datetime import datetime
-
+from email_validator import validate_email
 
 class SQL:
     def __init__(self, host, user, password, database):
@@ -67,7 +67,7 @@ class SQL:
         except Exception as e:
             raise e
         
-        cursor.close()
+        cursor.close() 
 
 
 class Lifts(SQL): 
@@ -110,16 +110,58 @@ class Weight(SQL):
         SQL.insert_data(self,query)
 
 class User(SQL):
-    def new_user(self, first_name:str, last_name:str, email:str, user_password:str):
-        if not all([isinstance(first_name, str), isinstance(last_name, str), isinstance(email, str), isinstance(user_password, str)]):
+    def new_user(self, first_name:str, last_name:str, email:str, user_password:str, birthday:str):
+
+
+        if not all([isinstance(first_name, str), isinstance(last_name, str), isinstance(email, str), isinstance(user_password, str),isinstance(birthday, str)]):
             raise Exception("Please pass str for each variable")
 
-        # Dupe Email check
-        if len(W.query_data(f"""SELECT * FROM WEIGHTLIFTING.USERS U WHERE LOWER(U.EMAIL) LIKE LOWER('{email}')""")) > 0:
+        if not all([len(first_name) > 0, len(last_name) > 0]):
+            raise Exception("Please input a string for first name and last name")
+
+        if len(user_password) < 8:
+            raise Exception("Please create a password at least 8 character longs") 
+
+        # Email handling
+        # Validate real email
+        try: 
+            validate_email(email)
+        except Exception:
+            raise Exception("Invalid email")
+
+        # Dupe Email handling
+        dupe_query = f"""SELECT * 
+                        FROM WEIGHTLIFTING.USERS U 
+                        WHERE LOWER(U.EMAIL) LIKE LOWER('{email.strip()}')"""
+        output_df = SQL.query_data(self, dupe_query)
+        
+        if len(output_df) > 0:
             raise Exception("Email address already in use. Please choose another.")        
 
-        query = f"""INSERT INTO WEIGHTLIFTING.USERS (FIRST_NAME,LAST_NAME,EMAIL,USER_PASSWORD) 
-                    VALUES ('{first_name.strip()}', '{last_name.strip()}', '{email}', '{user_password}');"""
+        # Birthday handling
+        User.user_birthday_handling(birthday)
+
+        # Creating User
+        query = f"""INSERT INTO WEIGHTLIFTING.USERS (FIRST_NAME,LAST_NAME,EMAIL,USER_PASSWORD, BIRTHDAY) 
+                    VALUES ('{first_name.strip()}', '{last_name.strip()}', '{email.strip()}', '{user_password}', '{birthday}');"""
 
         SQL.insert_data(self,query)
+
+    def user_birthday_handling(date:str):
+        """Handles birthday ensuring it is greater than 1950 and before today's date.
+
+        Args:
+            date (str): Birthday
+
+        Raises:
+            Exception: Must pass date in YYYY-MM-DD format.
+            Exception: Must enter a valid birthday.
+        """
+        try:
+            dt_date = datetime.strptime(date, '%Y-%m-%d')
+        except Exception as e:
+            raise Exception("Please pass date in YYYY-MM-DD format.")
+
+        if (dt_date.year < 1950) or (dt_date >= datetime.today()):
+            raise Exception("Please enter a valid birthday.")
         
