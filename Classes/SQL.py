@@ -1,3 +1,6 @@
+import mysql.connector
+import pandas as pd
+
 class SQL:
     def __init__(self, host, user, password, database):
         self.host = host
@@ -10,7 +13,9 @@ class SQL:
                             password=self.password,
                             database=self.database
                         )
-        # self.cursor = self.my_database.cursor()
+
+    def close_connection(self):
+         self.my_database.close()
 
     def query_data(self, query:str):
         """Provides the ability to query data from the database

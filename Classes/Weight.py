@@ -1,3 +1,5 @@
+from .SQL import SQL
+
 class Weight(SQL):
     def new_weight(self, user_id:int, weight:float, weight_date:str):
         try: 
@@ -12,3 +14,5 @@ class Weight(SQL):
                     VALUES ({user_id}, {weight},'{weight_date}');"""
         
         SQL.insert_data(self,query)
+
+    

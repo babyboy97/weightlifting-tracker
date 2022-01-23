@@ -1,3 +1,7 @@
+from .SQL import SQL
+from email_validator import validate_email
+from datetime import datetime
+
 class User(SQL):
     def new_user(self, first_name:str, last_name:str, email:str, user_password:str, birthday:str):
         """Provides the ability to create a new user account.

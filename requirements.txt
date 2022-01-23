@@ -2,3 +2,4 @@ datetime
 mysql-connector-python
 pandas
 email_validator
+pathlib

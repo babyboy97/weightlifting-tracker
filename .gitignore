@@ -2,3 +2,6 @@
 *.xlsx
 *.pyc
 *.csv
+__pycache__
+DatabaseManagement.py
+test.ipynb

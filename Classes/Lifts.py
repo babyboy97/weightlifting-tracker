@@ -1,3 +1,6 @@
+from .SQL import SQL
+
+
 class Lifts(SQL): 
     def new_lift(self, user_id:int, lift:int, set_number:int, reps:int, weight:int, lift_date:str):
         """Provide ability to import into the lift database
