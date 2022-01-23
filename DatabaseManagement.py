@@ -94,4 +94,14 @@ class Weight(SQL):
                     VALUES ({weight},'{weight_date}');"""
         
         SQL.insert_data(self,query)
+
+class User(SQL):
+    def new_user(self, first_name:str, last_name:str, email:str, user_password:str):
+        if not all([isinstance(first_name, str), isinstance(last_name, str), isinstance(email, str), isinstance(user_password, str)]):
+            raise Exception("Please pass str for each variable")
+
+        query = f"""INSERT INTO WEIGHTLIFTING.USERS (FIRST_NAME,LAST_NAME,EMAIL,USER_PASSWORD) 
+                    VALUES ('{first_name}', '{last_name}', '{email}', '{user_password}');"""
+
+        SQL.insert_data(self,query)
         

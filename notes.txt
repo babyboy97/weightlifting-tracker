@@ -1,4 +1,4 @@
-Add person level data tracking, unique identifier for different people 
+Add person level data tracking, unique identifier for different people. Created date, username, password, email
 
 Make assumptions on rest day when nothign is logged? Requires you to be able to go back and update and to chose yourself 
 when adding data points. Potentially at beginning of session you chose your person from drop down? With a password to
