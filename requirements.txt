@@ -3,3 +3,5 @@ mysql-connector-python
 pandas
 email_validator
 pathlib
+Flask==1.1.1
+Flast-SQLAlechemy==2.4.4
