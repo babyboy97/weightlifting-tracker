@@ -4,4 +4,3 @@
 *.csv
 __pycache__
 DatabaseManagement.py
-test.ipynb
